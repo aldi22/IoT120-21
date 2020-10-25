@@ -1,7 +1,7 @@
 const int led_1 = 16;
 const int led_2 = 5;
 const int led_3 = 4;
-const int interval_1 = 14000 ;
+const int interval_1 = 10000 ;
 const int interval_2 = 3000 ;
 const int interval_3 = 7000 ;
 unsigned long prev_mils= 0;
@@ -21,7 +21,7 @@ void loop() {
    unsigned long current_mils = millis() ;
    Serial.println(current_mils);
    delay(1000);
-    if ( (current_mils - prev_mils >= 0) and turnRed) {
+    if ( current_mils - prev_mils >= interval_2 and turnRed) {
     prev_mils = current_mils;
     if ( digitalRead(led_1) == LOW) {
       Serial.println("LED 1");
@@ -33,7 +33,7 @@ void loop() {
     }
    }
 
-   else if ( (current_mils - prev_mils >= interval_1) and turnYellow_1) { 
+   else if ( current_mils - prev_mils >= interval_1 and turnYellow_1) { 
     prev_mils = current_mils;
 
     if ( digitalRead(led_2) == LOW) {
